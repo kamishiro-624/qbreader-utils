@@ -19,15 +19,19 @@ function answerQuestion(answer) {
   document.getElementById("next").click();
 }
 
-/*
-async function showError(error) {
+async function showError() {
   const errorMsg = document.createElement('div');
   const targetArea = document.getElementById('settings');
     errorMsg.textContent = "Could not fetch packet data; try re-enabling bot on the next question.";
-    errorMsg.color = "E0E0E0";
+    errorMsg.style.color = "#c94334";
+    errorMsg.style.display = "flex";
+    errorMsg.style.justifyContent = "center";
+    errorMsg.style.textAlign = "center";
   targetArea.prepend(errorMsg);
+  document.getElementById("toggle-bot").click();
+  await sleep(3000);
+  errorMsg.remove();
 }
-*/
 
 async function getPacket() {
   const SET_NAME = document.getElementById("set-name-info").textContent;
@@ -49,7 +53,7 @@ async function getPacket() {
     if (!response.ok) {
       if (response.status === 404) {
         console.log("!!! IMPORTANT !!!\nCould not find packet; try skipping to next question and re-enabling the bot!");
-        // showError();
+        showError();
       }
       throw new Error(`HTTP error with a status of: ${response.status}`);
     }
@@ -104,6 +108,7 @@ async function startBot() {
 
 const targetArea = document.getElementById('settings'); 
 const toggleBtn = document.createElement('button');
+  toggleBtn.id = 'toggle-bot';
   toggleBtn.innerText = 'Enable Bot';
   toggleBtn.style.padding = '10px 20px';
   toggleBtn.style.display = 'block';
