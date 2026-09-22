@@ -19,6 +19,16 @@ function answerQuestion(answer) {
   document.getElementById("next").click();
 }
 
+/*
+async function showError(error) {
+  const errorMsg = document.createElement('div');
+  const targetArea = document.getElementById('settings');
+    errorMsg.textContent = "Could not fetch packet data; try re-enabling bot on the next question.";
+    errorMsg.color = "E0E0E0";
+  targetArea.prepend(errorMsg);
+}
+*/
+
 async function getPacket() {
   const SET_NAME = document.getElementById("set-name-info").textContent;
   const PACKET_NUMBER = document.getElementById("packet-number-info").textContent;
@@ -35,10 +45,15 @@ async function getPacket() {
 
   try {
     const response = await fetch(`https://www.qbreader.org/api/packet?${params}`);
+
     if (!response.ok) {
-      if (response.status === 404) {console.log("!!! IMPORTANT !!!\nCould not find packet; try skipping to next question and re-enabling the bot!")}
+      if (response.status === 404) {
+        console.log("!!! IMPORTANT !!!\nCould not find packet; try skipping to next question and re-enabling the bot!");
+        // showError();
+      }
       throw new Error(`HTTP error with a status of: ${response.status}`);
     }
+
     const data = await response.json();
     return data;
   } catch (error) {
