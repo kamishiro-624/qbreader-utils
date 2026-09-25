@@ -47,11 +47,13 @@ if (!skipBtn.checked) skipBtn.click();
 const privRoom = document.getElementById("toggle-public");
 if (privRoom.checked) privRoom.click();
 
-(lockRoom = async () => {
+async function lockRoomButton() {
   await sleep(50);
   const tLock = document.getElementById("toggle-lock");
   if (!tLock.checked) tLock.click();
-})();
+}
+
+lockRoomButton();
 
 async function lockRoom() {
     if (!lockingRoom) return;
