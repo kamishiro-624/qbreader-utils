@@ -1,4 +1,5 @@
 // Same thing, but it automatically privates the room and locks it, preventing players from rejoining.
+// NOT WORKING RN
 
 alert("This script does not work in the official multiplayer rooms due to setting restrictions. - kamishiro >w<");
 
