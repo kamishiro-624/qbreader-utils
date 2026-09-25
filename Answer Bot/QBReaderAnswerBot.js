@@ -22,14 +22,21 @@ function answerQuestion(answer) {
 async function showError() {
   const errorMsg = document.createElement('div');
   const targetArea = document.getElementById('settings');
-    errorMsg.textContent = "Could not fetch packet data; try re-enabling bot on the next question.";
+    errorMsg.textContent = "Could not fetch packet data; attempting to skip to next question.";
     errorMsg.style.color = "#c94334";
     errorMsg.style.display = "flex";
     errorMsg.style.justifyContent = "center";
     errorMsg.style.textAlign = "center";
   targetArea.prepend(errorMsg);
   document.getElementById("toggle-bot").click();
-  await sleep(3000);
+  
+  const skipBtn = document.getElementById("toggle-skip")
+  if (!skipBtn.checked) skipBtn.click();
+  document.getElementById("next").click();
+  await sleep(50);
+  document.getElementById("toggle-bot").click();
+
+  await sleep(2000);
   errorMsg.remove();
 }
 
