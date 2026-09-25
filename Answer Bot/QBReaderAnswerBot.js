@@ -30,12 +30,12 @@ async function showError() {
   targetArea.prepend(errorMsg);
   document.getElementById("toggle-bot").click();
 
-  const skipBtn = document.getElementById("toggle-skip")
+  const skipBtn = document.getElementById("toggle-skip");
   if (!skipBtn.checked) skipBtn.click();
+  if (document.getElementById("pause").firstElementChild.classList.contains("bi-play-fill")) document.getElementById("pause").click();
   document.getElementById("next").click();
 
-  await sleep(500);
-  document.getElementById("toggle-bot").click();
+  errorMsg.textContent = "Try re-enabling the bot now.";
 
   await sleep(2000);
   errorMsg.remove();
@@ -91,6 +91,8 @@ async function main() {
 
   while ((wordsLeft / questionLength) > 0.95) {
     await sleep(50); // no crashy
+
+     if (document.getElementById("pause").firstElementChild.classList.contains("bi-play-fill")) document.getElementById("pause").click();
 
     readingQuestion = document.getElementById("question").textContent;
     wordsLeft = questionLength - readingQuestion.length;
