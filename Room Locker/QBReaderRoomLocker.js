@@ -1,6 +1,7 @@
+alert("This script does not work in the official multiplayer rooms due to setting restrictions. - kamishiro >w<");
+
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms)); // sleep
 let lockingRoom = false;
-
 
 function dragHandle(handleId) {
   const handle = document.getElementById(handleId);
