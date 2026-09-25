@@ -29,11 +29,12 @@ async function showError() {
     errorMsg.style.textAlign = "center";
   targetArea.prepend(errorMsg);
   document.getElementById("toggle-bot").click();
-  
+
   const skipBtn = document.getElementById("toggle-skip")
   if (!skipBtn.checked) skipBtn.click();
   document.getElementById("next").click();
-  await sleep(50);
+
+  await sleep(500);
   document.getElementById("toggle-bot").click();
 
   await sleep(2000);
